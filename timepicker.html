@@ -42,17 +42,23 @@
         <form>
         <div class="grid-container">
             <div class="grid-x grid-padding-x">
-            <div class="medium-6 cell">
-                <label><i class="fas fa-table"></i>&nbsp;Pick a date
-                <input type="date" id="datepick" name="trip-start"
-                        min="2019-01-01" max="2020-12-31">
-                </label>
-            </div>
-            <div class="medium-6 cell">
-                <label><i class="fas fa-clock"></i>&nbsp;Pick a time
-                <input type="time" id="timepick" name="appt" min="9:00" max="18:00">
-                </label>
-            </div>
+                <div class="medium-4 cell">
+                    <label><i class="fas fa-table"></i>&nbsp;Pick a date
+                    <input type="date" id="datepick" name="trip-start"
+                            min="2019-01-01" max="2020-12-31" disabled>
+                    </label>
+                </div>
+                <div class="medium-4 cell">
+                    <label><i class="fas fa-clock"></i>&nbsp;Pick a time
+                    <input type="time" id="timepick" name="appt" min="9:00" max="18:00" disabled>
+                    </label>
+                </div>
+                <div class="medium-4 cell">
+                  <label>
+                    &nbsp;
+                  </label>
+                  <i class="fas fa-2x fa-edit" id="edit-grid"></i>
+              </div>
             </div>
         </div>
         </form>
@@ -82,6 +88,18 @@
             console.log('Is DST? => ' + moment().isDST());
             $('#datepick').val(curDate);
             $('#timepick').val(curTime);
+
+            $('#edit-grid').click( () => {
+                $("#timepick").prop('disabled', false);
+                $("#timepick").focus();
+            });
+
+            $("#timepick").focusout( () => {
+                $("#timepick").prop('disabled', true);
+                const selDate = $('#datepick').val();
+                const selTime = $('#timepick').val();
+                alert("Your selected date time is " + selDate + " " + selTime );
+            });
 
     </script>
 
