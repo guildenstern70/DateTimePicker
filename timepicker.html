@@ -37,20 +37,20 @@
     </div>
 
     <div class="content">
+    
         <h4 class="red">Welcome to TimePicker</h4>
         <form>
         <div class="grid-container">
             <div class="grid-x grid-padding-x">
             <div class="medium-6 cell">
                 <label><i class="fas fa-table"></i>&nbsp;Pick a date
-                <input type="date" id="start" name="trip-start"
-                        value="2019-04-22"
+                <input type="date" id="datepick" name="trip-start"
                         min="2019-01-01" max="2020-12-31">
                 </label>
             </div>
             <div class="medium-6 cell">
                 <label><i class="fas fa-clock"></i>&nbsp;Pick a time
-                <input type="time" id="appt" name="appt" min="9:00" max="18:00" required>
+                <input type="time" id="timepick" name="appt" min="9:00" max="18:00">
                 </label>
             </div>
             </div>
@@ -67,10 +67,22 @@
             integrity="sha256-/PFxCnsMh+nTuM0k3VJCRch1gwnCfKjaP8rJNq5SoBg= sha384-9ksAFjQjZnpqt6VtpjMjlp2S0qrGbcwF/rvrLUg2vciMhwc1UJJeAAOLuJ96w+Nj sha512-UMSn6RHqqJeJcIfV1eS2tPKCjzaHkU/KqgAnQ7Nzn0mLicFxaVhm9vq7zG5+0LALt15j1ljlg8Fp9PT1VGNmDw==" 
             crossorigin="anonymous"></script>
     
+    <script src="js/moment.min.js"></script>
+    
     <script>
-        (function() {
+
             $(document).foundation();
-        });
+
+            // Set controls date & time
+            moment.locale('it');
+            const curDate = moment().format("YYYY-MM-DD");
+            const curTime = moment().format("hh:mm");
+            console.log('Current date => ' + curDate);
+            console.log('Current time => ' + curTime);
+            console.log('Is DST? => ' + moment().isDST());
+            $('#datepick').val(curDate);
+            $('#timepick').val(curTime);
+
     </script>
 
 </body>
